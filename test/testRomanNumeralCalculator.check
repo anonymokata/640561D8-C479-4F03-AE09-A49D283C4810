@@ -3,6 +3,10 @@
 #define SUMBUFFERLENGTH 64
 char sumBuffer[SUMBUFFERLENGTH];
 
+#test testAddIPlusXIIGivesXIII
+  size_t usedSumBufferSize = addRomanNumerals("I", "XII", sumBuffer, SUMBUFFERLENGTH);
+  ck_assert_str_eq(sumBuffer, "XIII");
+
 #test testAddIPlusXGivesXI
   size_t usedSumBufferSize = addRomanNumerals("I", "X", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "XI");

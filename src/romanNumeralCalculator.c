@@ -1,10 +1,10 @@
 #include <string.h>
 
-char *romanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"};
-int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2, 1, 2};
+char *romanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"};
+int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2, 1, 2, 3, 4};
 
 int romanToDecimal(char *roman) {
-	for(int i=1; i<=11; ++i) {
+	for(int i=1; i<=13; ++i) {
 		if (!strcmp(roman, romanSymbols[i])) {
 			return i;
 		}
