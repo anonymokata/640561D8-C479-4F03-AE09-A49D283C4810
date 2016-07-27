@@ -13,6 +13,9 @@ int romanToDecimal(char *roman) {
 	else if (!strcmp(roman,"IV")) {
 		return 4;
 	}
+	else if (!strcmp(roman,"V")) {
+		return 5;
+	}
 }
 
 size_t decimalToRoman(int decimal, char *decimalBuffer, size_t decimalBufferLength) {
@@ -46,6 +49,12 @@ size_t decimalToRoman(int decimal, char *decimalBuffer, size_t decimalBufferLeng
 		usedDecimalBufferLength = 1;
 		if(usedDecimalBufferLength <= decimalBufferLength){
 			strncpy(decimalBuffer, "V", decimalBufferLength);
+		}
+	}
+	else if (decimal == 6) {
+		usedDecimalBufferLength = 2;
+		if(usedDecimalBufferLength <= decimalBufferLength){
+			strncpy(decimalBuffer, "VI", decimalBufferLength);
 		}
 	}
 	return usedDecimalBufferLength;
