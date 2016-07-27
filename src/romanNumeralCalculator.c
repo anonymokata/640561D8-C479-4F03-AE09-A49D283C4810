@@ -1,9 +1,10 @@
 #include <string.h>
 
-char *romanSymbols[] = { "", "I", "II", "III", "IV", "V" };
+char *romanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI" };
+int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 6};
 
 int romanToDecimal(char *roman) {
-	for(int i=1; i<=5; ++i) {
+	for(int i=1; i<=6; ++i) {
 		if (!strcmp(roman, romanSymbols[i])) {
 			return i;
 		}
@@ -11,45 +12,10 @@ int romanToDecimal(char *roman) {
 }
 
 size_t decimalToRoman(int decimal, char *decimalBuffer, size_t decimalBufferLength) {
-	size_t usedDecimalBufferLength;
-
-	if(decimal == 1) {
-		usedDecimalBufferLength = 1;
-		if(usedDecimalBufferLength <= decimalBufferLength){
-			strncpy(decimalBuffer, "I", decimalBufferLength);
-		}
+	if(romanSymbolLength[decimal] <= decimalBufferLength){
+		strncpy(decimalBuffer, romanSymbols[decimal], decimalBufferLength);
 	}
-	else if(decimal == 2) {
-		usedDecimalBufferLength = 2;
-		if(usedDecimalBufferLength <= decimalBufferLength){
-			strncpy(decimalBuffer, "II", decimalBufferLength);
-		}
-	}
-	else if (decimal == 3) {
-		usedDecimalBufferLength = 3;
-		if(usedDecimalBufferLength <= decimalBufferLength){
-			strncpy(decimalBuffer, "III", decimalBufferLength);
-		}
-	}
-	else if (decimal == 4) {
-		usedDecimalBufferLength = 2;
-		if(usedDecimalBufferLength <= decimalBufferLength){
-			strncpy(decimalBuffer, "IV", decimalBufferLength);
-		}
-	}
-	else if (decimal == 5) {
-		usedDecimalBufferLength = 1;
-		if(usedDecimalBufferLength <= decimalBufferLength){
-			strncpy(decimalBuffer, "V", decimalBufferLength);
-		}
-	}
-	else if (decimal == 6) {
-		usedDecimalBufferLength = 2;
-		if(usedDecimalBufferLength <= decimalBufferLength){
-			strncpy(decimalBuffer, "VI", decimalBufferLength);
-		}
-	}
-	return usedDecimalBufferLength;
+	return romanSymbolLength[decimal];
 }
 
 size_t addRomanNumerals(char *term1, char *term2, char *sumBuffer, size_t sumBufferLength) {
