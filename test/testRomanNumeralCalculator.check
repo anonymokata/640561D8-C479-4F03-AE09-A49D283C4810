@@ -1,66 +1,36 @@
 #include "../src/romanNumeralCalculator.h"
 
+#define SUMBUFFERLENGTH 64
+char sumBuffer[SUMBUFFERLENGTH];
+
 #test testAddVIIPlusIIGivesIX
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("VII", "II", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("VII", "II", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "IX");
 
-
 #test testAddIIPlusVIGivesVIII
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("II", "VI", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("II", "VI", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "VIII");
 
 #test testAddVPlusIIIGivesIII
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("III", "III", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("III", "III", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "VI");
 
 #test testAddIVPlusIGivesV
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("IV", "I", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("IV", "I", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "V");
 
 #test testAddIIPlusIIGivesIV
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("II", "II", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("II", "II", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "IV");
 
 #test testAddIIPlusIGivesIII
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("II", "I", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("II", "I", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "III");
 
 #test testAddIPlusIIGivesIII
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("I", "II", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("I", "II", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "III");
 
 #test testAddIPlusIGivesII
-  size_t sumBufferLength = 64;
-  char sumBuffer[sumBufferLength];
-
-  size_t usedSumBufferSize = addRomanNumerals("I", "I", sumBuffer, sumBufferLength);
-
+  size_t usedSumBufferSize = addRomanNumerals("I", "I", sumBuffer, SUMBUFFERLENGTH);
   ck_assert_str_eq(sumBuffer, "II");
