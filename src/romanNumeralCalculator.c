@@ -1,20 +1,18 @@
 #include <string.h>
 
 int romanToDecimal(char *roman) {
-	if(!strcmp(roman,"I")) {
-		return 1;
-	}
-	else if (!strcmp(roman,"II")) {
-		return 2;
-	}
-	else if (!strcmp(roman,"III")) {
-		return 3;
-	}
-	else if (!strcmp(roman,"IV")) {
-		return 4;
-	}
-	else if (!strcmp(roman,"V")) {
-		return 5;
+	const char *romanSymbols[6];
+
+	romanSymbols[1] = "I";
+	romanSymbols[2] = "II";
+	romanSymbols[3] = "III";
+	romanSymbols[4] = "IV";
+	romanSymbols[5] = "V";
+
+	for(int i=1; i<=5; ++i) {
+		if (!strcmp(roman, romanSymbols[i])) {
+			return i;
+		}
 	}
 }
 
