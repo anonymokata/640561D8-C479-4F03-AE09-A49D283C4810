@@ -1,6 +1,6 @@
 #include "../src/romanNumeralCalculator.h"
 
-#test testAddVPlusIGivesVI
+#test testAddVPlusIIIGivesIII
   size_t sumBufferLength = 64;
   char sumBuffer[sumBufferLength];
 
