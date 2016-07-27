@@ -1,7 +1,7 @@
 #include <string.h>
 
-char *romanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII" };
-int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4};
+char *romanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
 
 int romanToDecimal(char *roman) {
 	for(int i=1; i<=8; ++i) {
