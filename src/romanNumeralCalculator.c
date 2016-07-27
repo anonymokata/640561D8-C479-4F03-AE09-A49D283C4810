@@ -29,11 +29,15 @@ size_t decimalToRoman(int decimal, char *decimalBuffer, size_t decimalBufferLeng
 	}
 	else if (decimal == 3) {
 		usedDecimalBufferLength = 3;
-		strncpy(decimalBuffer, "III", decimalBufferLength);
+		if(usedDecimalBufferLength <= decimalBufferLength){
+			strncpy(decimalBuffer, "III", decimalBufferLength);
+		}
 	}
 	else if (decimal == 4) {
 		usedDecimalBufferLength = 2;
-		strncpy(decimalBuffer, "IV", decimalBufferLength);
+		if(usedDecimalBufferLength <= decimalBufferLength){
+			strncpy(decimalBuffer, "IV", decimalBufferLength);
+		}
 	}
 	return usedDecimalBufferLength;
 }
