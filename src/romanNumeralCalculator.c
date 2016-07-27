@@ -11,7 +11,8 @@ size_t addRomanNumerals(char *term1, char *term2, char *sumBuffer, size_t sumBuf
 			strncpy(sumBuffer, sumRomanNumeral, sumBufferLength);
 		}
 	}
-	else if (!strcmp(term1,"I") && !strcmp(term2,"II")) {
+	else if ( (!strcmp(term1,"I") && !strcmp(term2,"II"))
+		|| (!strcmp(term1,"II") && !strcmp(term2,"I")) ) {
 		char sumRomanNumeral[] = "III";
 		usedSumBufferLength = 3;
 
