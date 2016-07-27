@@ -1,14 +1,8 @@
 #include <string.h>
 
+char *romanSymbols[] = { "", "I", "II", "III", "IV", "V" };
+
 int romanToDecimal(char *roman) {
-	const char *romanSymbols[6];
-
-	romanSymbols[1] = "I";
-	romanSymbols[2] = "II";
-	romanSymbols[3] = "III";
-	romanSymbols[4] = "IV";
-	romanSymbols[5] = "V";
-
 	for(int i=1; i<=5; ++i) {
 		if (!strcmp(roman, romanSymbols[i])) {
 			return i;
