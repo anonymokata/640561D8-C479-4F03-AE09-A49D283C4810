@@ -1,5 +1,14 @@
 #include "../src/romanNumeralCalculator.h"
 
+#test testAddIIPlusIIGivesIV
+  size_t sumBufferLength = 64;
+  char sumBuffer[sumBufferLength];
+
+  size_t usedSumBufferSize = addRomanNumerals("II", "II", sumBuffer, sumBufferLength);
+
+  ck_assert_str_eq(sumBuffer, "IV");
+
+
 #test testAddIIPlusIGivesIII
   size_t sumBufferLength = 64;
   char sumBuffer[sumBufferLength];
