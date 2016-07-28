@@ -3,10 +3,10 @@
 typedef enum { false, true } bool;
 
 char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX"};
+char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
 int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
 int onesSymbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
-int tensSymbolSearchOrder[] = {0, 8, 7, 6, 4, 5, 3, 2, 1};
+int tensSymbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
 
 int romanToArabic(char *roman) {
 	char *foundRomanPointer;
@@ -18,7 +18,7 @@ int romanToArabic(char *roman) {
 	shiftingRomanPointer = roman;
 
 	symbolWasFound = false;
-	for(i=1; i<=8 && !symbolWasFound; ++i) {
+	for(i=1; i<=9 && !symbolWasFound; ++i) {
 		foundRomanPointer = strstr(shiftingRomanPointer, tensRomanSymbols[tensSymbolSearchOrder[i]]);
 		if(foundRomanPointer != NULL) {
 			symbolWasFound = true;
