@@ -18,14 +18,12 @@ int romanToArabic(char *roman) {
 	char *foundRomanPointer;
 	char *shiftingRomanPointer;
 	int arabic = 0;
-	int i;
-	bool symbolWasFound;
 
 	shiftingRomanPointer = roman;
 
 	for(int place = 3; place >= 0; --place) {
-		symbolWasFound = false;
-		for(i=1; i<=9 && !symbolWasFound; ++i) {
+		bool symbolWasFound = false;
+		for(int i=1; i<=9 && !symbolWasFound; ++i) {
 			foundRomanPointer = strstr(shiftingRomanPointer, romanSymbols[place][symbolSearchOrder[i]]);
 			if(foundRomanPointer != NULL) {
 				symbolWasFound = true;
