@@ -4,7 +4,8 @@ typedef enum { false, true } bool;
 
 char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "*"};
+char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+char *thousandsRomanSymbols[] = { "", "M", "MM", "MMM", "*", "*", "*", "*", "*", "*"};
 int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
 int symbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
 
@@ -16,6 +17,18 @@ int romanToArabic(char *roman) {
 	bool symbolWasFound;
 
 	shiftingRomanPointer = roman;
+
+	symbolWasFound = false;
+	for(i=1; i<=9 && !symbolWasFound; ++i) {
+		foundRomanPointer = strstr(shiftingRomanPointer, thousandsRomanSymbols[symbolSearchOrder[i]]);
+		if(foundRomanPointer != NULL) {
+			symbolWasFound = true;
+			if(shiftingRomanPointer == foundRomanPointer) {
+				arabic += symbolSearchOrder[i]*1000;
+				shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
+			}
+		}
+	}
 
 	symbolWasFound = false;
 	for(i=1; i<=9 && !symbolWasFound; ++i) {
@@ -55,12 +68,17 @@ int romanToArabic(char *roman) {
 
 size_t arabicToRoman(int arabic, char *roman, size_t romanBufferLength) {
 	size_t romanLength = 0;
-	int hundredsDigit = arabic/100;
-	int tensDigit = (arabic - hundredsDigit*100)/10;
-	int onesDigit = arabic - tensDigit*10 - hundredsDigit*100;
+	int thousandsDigit = arabic/1000;
+	int hundredsDigit = (arabic - thousandsDigit*1000)/100;
+	int tensDigit = (arabic - hundredsDigit*100 - thousandsDigit*1000)/10;
+	int onesDigit = arabic - tensDigit*10 - hundredsDigit*100 - thousandsDigit*1000;
 
+	if((romanSymbolLength[thousandsDigit] + romanLength) <= romanBufferLength){
+		strncpy(roman, thousandsRomanSymbols[thousandsDigit], romanBufferLength);
+		romanLength += romanSymbolLength[thousandsDigit];
+	}
 	if((romanSymbolLength[hundredsDigit] + romanLength) <= romanBufferLength){
-		strncpy(roman, hundredsRomanSymbols[hundredsDigit], romanBufferLength);
+		strcat(roman, hundredsRomanSymbols[hundredsDigit]);
 		romanLength += romanSymbolLength[hundredsDigit];
 	}
 	if((romanSymbolLength[tensDigit] + romanLength) <= romanBufferLength){
