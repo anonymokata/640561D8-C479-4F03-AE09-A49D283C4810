@@ -1,4 +1,5 @@
 #include <string.h>
+#include <math.h>
 
 typedef enum { false, true } bool;
 
@@ -10,11 +11,6 @@ char *romanSymbols[ROW][COL] = {
 	{ "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
 	{ "", "M", "MM", "MMM", "*", "*", "*", "*", "*", "*"}
 };
-
-char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-char *thousandsRomanSymbols[] = { "", "M", "MM", "MMM", "*", "*", "*", "*", "*", "*"};
 int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
 int symbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
 
@@ -27,48 +23,17 @@ int romanToArabic(char *roman) {
 
 	shiftingRomanPointer = roman;
 
-	symbolWasFound = false;
-	for(i=1; i<=9 && !symbolWasFound; ++i) {
-		foundRomanPointer = strstr(shiftingRomanPointer, thousandsRomanSymbols[symbolSearchOrder[i]]);
-		if(foundRomanPointer != NULL) {
-			symbolWasFound = true;
-			if(shiftingRomanPointer == foundRomanPointer) {
-				arabic += symbolSearchOrder[i]*1000;
-				shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
+	for(int place = 3; place >= 0; --place) {
+		symbolWasFound = false;
+		for(i=1; i<=9 && !symbolWasFound; ++i) {
+			foundRomanPointer = strstr(shiftingRomanPointer, romanSymbols[place][symbolSearchOrder[i]]);
+			if(foundRomanPointer != NULL) {
+				symbolWasFound = true;
+				if(shiftingRomanPointer == foundRomanPointer) {
+					arabic += symbolSearchOrder[i]*pow(10,place);
+					shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
+				}
 			}
-		}
-	}
-
-	symbolWasFound = false;
-	for(i=1; i<=9 && !symbolWasFound; ++i) {
-		foundRomanPointer = strstr(shiftingRomanPointer, hundredsRomanSymbols[symbolSearchOrder[i]]);
-		if(foundRomanPointer != NULL) {
-			symbolWasFound = true;
-			if(shiftingRomanPointer == foundRomanPointer) {
-				arabic += symbolSearchOrder[i]*100;
-				shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
-			}
-		}
-	}
-
-	symbolWasFound = false;
-	for(i=1; i<=9 && !symbolWasFound; ++i) {
-		foundRomanPointer = strstr(shiftingRomanPointer, tensRomanSymbols[symbolSearchOrder[i]]);
-		if(foundRomanPointer != NULL) {
-			symbolWasFound = true;
-			if(shiftingRomanPointer == foundRomanPointer) {
-				arabic += symbolSearchOrder[i]*10;
-				shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
-			}
-		}
-	}
-
-	symbolWasFound = false;
-	for(i=1; i<=9 && !symbolWasFound; ++i) {
-		foundRomanPointer = strstr(shiftingRomanPointer, onesRomanSymbols[symbolSearchOrder[i]]);
-		if(foundRomanPointer != NULL) {
-			symbolWasFound = true;
-			arabic += symbolSearchOrder[i];
 		}
 	}
 
