@@ -3,6 +3,10 @@
 #define RESULTBUFFERLENGTH 64
 char resultBuffer[RESULTBUFFERLENGTH];
 
+#test testSubtractMMMCCCXLIIIMinusCMLXXXVIIEqualsMMCCCLVI
+  size_t usedSumBufferSize = subtractRomanNumerals("MMMCCCXLIII", "CMLXXXVII", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "MMCCCLVI");
+
 #test testSubtractIIIMinusIEqualsII
   size_t usedSumBufferSize = subtractRomanNumerals("III", "I", resultBuffer, RESULTBUFFERLENGTH);
   ck_assert_str_eq(resultBuffer, "II");
