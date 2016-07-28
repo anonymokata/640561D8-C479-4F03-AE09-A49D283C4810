@@ -75,12 +75,12 @@ size_t arabicToRoman(int arabic, char *roman, size_t romanBufferLength) {
 	return romanLength;
 }
 
-size_t addRomanNumerals(char *term1Roman, char *term2Roman, char *sumRoman, size_t sumBufferLength) {
+size_t addRomanNumerals(char *term1Roman, char *term2Roman, char *sumRoman, size_t sumRomanBufferLength) {
 	int term1Arabic = romanToArabic(term1Roman);
 	int term2Arabic = romanToArabic(term2Roman);
 	int sumArabic = term1Arabic + term2Arabic;
 
-	size_t usedSumBufferLength = arabicToRoman(sumArabic, sumRoman, sumBufferLength);
+	size_t usedSumBufferLength = arabicToRoman(sumArabic, sumRoman, sumRomanBufferLength);
 
 	return usedSumBufferLength;
 }
