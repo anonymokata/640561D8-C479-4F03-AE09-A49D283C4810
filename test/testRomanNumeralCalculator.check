@@ -1,80 +1,80 @@
 #include "../src/romanNumeralCalculator.h"
 
-#define SUMBUFFERLENGTH 64
-char sumBuffer[SUMBUFFERLENGTH];
+#define RESULTBUFFERLENGTH 64
+char resultBuffer[RESULTBUFFERLENGTH];
 
 #test testSubtractIIIMinusIEqualsII
-  size_t usedSumBufferSize = subtractRomanNumerals("III", "I", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "II");
+  size_t usedSumBufferSize = subtractRomanNumerals("III", "I", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "II");
 
 #test testAddDXLIIIPlusDCCLXXXIXEqualsMCCCXXXII
-  size_t usedSumBufferSize = addRomanNumerals("DXLIII", "DCCLXXXIX", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "MCCCXXXII");
+  size_t usedSumBufferSize = addRomanNumerals("DXLIII", "DCCLXXXIX", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "MCCCXXXII");
 
 #test testAddCCCPlusCEqualsCD
-  size_t usedSumBufferSize = addRomanNumerals("CCC", "C", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "CD");
+  size_t usedSumBufferSize = addRomanNumerals("CCC", "C", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "CD");
 
 #test testAddLPlusLEqualsC
-  size_t usedSumBufferSize = addRomanNumerals("L", "L", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "C");
+  size_t usedSumBufferSize = addRomanNumerals("L", "L", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "C");
 
 #test testAddXLPlusLVIEqualsXCVI
-  size_t usedSumBufferSize = addRomanNumerals("XL", "LVI", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "XCVI");
+  size_t usedSumBufferSize = addRomanNumerals("XL", "LVI", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "XCVI");
 
 #test testAddLIIIPlusXXXEqualsLXXXIII
-  size_t usedSumBufferSize = addRomanNumerals("LIII", "XXX", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "LXXXIII");
+  size_t usedSumBufferSize = addRomanNumerals("LIII", "XXX", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "LXXXIII");
 
 #test testAddXIVPlusXXXEqualsXXIV
-  size_t usedSumBufferSize = addRomanNumerals("XIV", "XXX", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "XLIV");
+  size_t usedSumBufferSize = addRomanNumerals("XIV", "XXX", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "XLIV");
 
 #test testAddXPlusXEqualsXX
-  size_t usedSumBufferSize = addRomanNumerals("X", "X", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "XX");
+  size_t usedSumBufferSize = addRomanNumerals("X", "X", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "XX");
 
 #test testAddIPlusXIIEqualsXIII
-  size_t usedSumBufferSize = addRomanNumerals("I", "XII", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "XIII");
+  size_t usedSumBufferSize = addRomanNumerals("I", "XII", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "XIII");
 
 #test testAddIPlusXEqualsXI
-  size_t usedSumBufferSize = addRomanNumerals("I", "X", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "XI");
+  size_t usedSumBufferSize = addRomanNumerals("I", "X", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "XI");
 
 #test testAddIPlusIXEqualsX
-  size_t usedSumBufferSize = addRomanNumerals("I", "IX", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "X");
+  size_t usedSumBufferSize = addRomanNumerals("I", "IX", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "X");
 
 #test testAddVIIPlusIIEqualsIX
-  size_t usedSumBufferSize = addRomanNumerals("VII", "II", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "IX");
+  size_t usedSumBufferSize = addRomanNumerals("VII", "II", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "IX");
 
 #test testAddIIPlusVIEqualsVIII
-  size_t usedSumBufferSize = addRomanNumerals("II", "VI", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "VIII");
+  size_t usedSumBufferSize = addRomanNumerals("II", "VI", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "VIII");
 
 #test testAddVPlusIIIEqualsIII
-  size_t usedSumBufferSize = addRomanNumerals("III", "III", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "VI");
+  size_t usedSumBufferSize = addRomanNumerals("III", "III", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "VI");
 
 #test testAddIVPlusIEqualsV
-  size_t usedSumBufferSize = addRomanNumerals("IV", "I", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "V");
+  size_t usedSumBufferSize = addRomanNumerals("IV", "I", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "V");
 
 #test testAddIIPlusIIEqualsIV
-  size_t usedSumBufferSize = addRomanNumerals("II", "II", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "IV");
+  size_t usedSumBufferSize = addRomanNumerals("II", "II", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "IV");
 
 #test testAddIIPlusIEqualsIII
-  size_t usedSumBufferSize = addRomanNumerals("II", "I", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "III");
+  size_t usedSumBufferSize = addRomanNumerals("II", "I", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "III");
 
 #test testAddIPlusIIEqualsIII
-  size_t usedSumBufferSize = addRomanNumerals("I", "II", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "III");
+  size_t usedSumBufferSize = addRomanNumerals("I", "II", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "III");
 
 #test testAddIPlusIEqualsII
-  size_t usedSumBufferSize = addRomanNumerals("I", "I", sumBuffer, SUMBUFFERLENGTH);
-  ck_assert_str_eq(sumBuffer, "II");
+  size_t usedSumBufferSize = addRomanNumerals("I", "I", resultBuffer, RESULTBUFFERLENGTH);
+  ck_assert_str_eq(resultBuffer, "II");
