@@ -18,12 +18,13 @@ int romanToArabic(char *roman) {
 	char *foundRomanPointer;
 	char *shiftingRomanPointer;
 	int arabic = 0;
+	int place, i;
 
 	shiftingRomanPointer = roman;
 
-	for(int place = 3; place >= 0; --place) {
+	for(place = 3; place >= 0; --place) {
 		bool symbolWasFound = false;
-		for(int i=1; i<=9 && !symbolWasFound; ++i) {
+		for(i=1; i<=9 && !symbolWasFound; ++i) {
 			foundRomanPointer = strstr(shiftingRomanPointer, romanSymbols[place][symbolSearchOrder[i]]);
 			if(foundRomanPointer != NULL) {
 				symbolWasFound = true;
@@ -39,6 +40,7 @@ int romanToArabic(char *roman) {
 }
 
 size_t arabicToRoman(int arabic, char *roman, size_t romanBufferLength) {
+	int place;
 	size_t romanLength = 0;
 	int thousandsDigit = arabic/1000;
 	int hundredsDigit = (arabic - thousandsDigit*1000)/100;
@@ -47,7 +49,7 @@ size_t arabicToRoman(int arabic, char *roman, size_t romanBufferLength) {
 
 	int digits[4] = {onesDigit, tensDigit, hundredsDigit, thousandsDigit};
 
-	for(int place = 3; place >= 0; --place) {
+	for(place = 3; place >= 0; --place) {
 		if((romanSymbolLength[digits[place]] + romanLength) <= romanBufferLength){
 			strcat(roman, romanSymbols[place][digits[place]]);
 			romanLength += romanSymbolLength[digits[place]];
