@@ -23,7 +23,7 @@ int romanToArabic(char *roman) {
 			symbolWasFound = true;
 			if(shiftingRomanPointer == foundRomanPointer) {
 				arabic += symbolSearchOrder[i]*10;
-				shiftingRomanPointer = foundRomanPointer + 1;
+				shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
 			}
 		}
 	}
@@ -57,12 +57,12 @@ size_t arabicToRoman(int arabic, char *arabicBuffer, size_t arabicBufferLength) 
 	return romanLength;
 }
 
-size_t addRomanNumerals(char *term1Roman, char *term2Roman, char *sumBuffer, size_t sumBufferLength) {
+size_t addRomanNumerals(char *term1Roman, char *term2Roman, char *sumRoman, size_t sumBufferLength) {
 	int term1Arabic = romanToArabic(term1Roman);
 	int term2Arabic = romanToArabic(term2Roman);
 	int sumArabic = term1Arabic + term2Arabic;
 
-	size_t usedSumBufferLength = arabicToRoman(sumArabic, sumBuffer, sumBufferLength);
+	size_t usedSumBufferLength = arabicToRoman(sumArabic, sumRoman, sumBufferLength);
 
 	return usedSumBufferLength;
 }
