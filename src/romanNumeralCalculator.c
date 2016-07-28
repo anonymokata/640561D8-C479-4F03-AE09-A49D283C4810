@@ -102,3 +102,13 @@ size_t addRomanNumerals(char *term1Roman, char *term2Roman, char *sumRoman, size
 
 	return usedSumBufferLength;
 }
+
+size_t subtractRomanNumerals(char *minuendRoman, char *subtrahendRoman, char *differenceRoman, size_t differenceRomanBufferLength) {
+	int minuendArabic = romanToArabic(minuendRoman);
+	int subtrahendArabic = romanToArabic(subtrahendRoman);
+	int differenceArabic = minuendArabic - subtrahendArabic;
+
+	size_t usedBufferLength = arabicToRoman(differenceArabic, differenceRoman, differenceRomanBufferLength);
+
+	return usedBufferLength;
+}
