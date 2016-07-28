@@ -53,22 +53,22 @@ int romanToArabic(char *roman) {
 	return arabic;
 }
 
-size_t arabicToRoman(int arabic, char *arabicBuffer, size_t arabicBufferLength) {
+size_t arabicToRoman(int arabic, char *roman, size_t romanBufferLength) {
 	size_t romanLength = 0;
 	int hundredsDigit = arabic/100;
 	int tensDigit = (arabic - hundredsDigit*100)/10;
 	int onesDigit = arabic - tensDigit*10 - hundredsDigit*100;
 
-	if((romanSymbolLength[hundredsDigit] + romanLength) <= arabicBufferLength){
-		strncpy(arabicBuffer, hundredsRomanSymbols[hundredsDigit], arabicBufferLength);
+	if((romanSymbolLength[hundredsDigit] + romanLength) <= romanBufferLength){
+		strncpy(roman, hundredsRomanSymbols[hundredsDigit], romanBufferLength);
 		romanLength += romanSymbolLength[hundredsDigit];
 	}
-	if((romanSymbolLength[tensDigit] + romanLength) <= arabicBufferLength){
-		strcat(arabicBuffer, tensRomanSymbols[tensDigit]);
+	if((romanSymbolLength[tensDigit] + romanLength) <= romanBufferLength){
+		strcat(roman, tensRomanSymbols[tensDigit]);
 		romanLength += romanSymbolLength[tensDigit];
 	}
-	if((romanSymbolLength[onesDigit] + romanLength) <= arabicBufferLength){
-		strcat(arabicBuffer, onesRomanSymbols[onesDigit]);
+	if((romanSymbolLength[onesDigit] + romanLength) <= romanBufferLength){
+		strcat(roman, onesRomanSymbols[onesDigit]);
 		romanLength += romanSymbolLength[onesDigit];
 	}
 
