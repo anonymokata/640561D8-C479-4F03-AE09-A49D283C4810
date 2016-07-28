@@ -4,6 +4,7 @@ typedef enum { false, true } bool;
 
 char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "*", "*", "*", "*", "*", "*"};
 int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
 int symbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
 
@@ -15,6 +16,18 @@ int romanToArabic(char *roman) {
 	bool symbolWasFound;
 
 	shiftingRomanPointer = roman;
+
+	symbolWasFound = false;
+	for(i=1; i<=9 && !symbolWasFound; ++i) {
+		foundRomanPointer = strstr(shiftingRomanPointer, hundredsRomanSymbols[symbolSearchOrder[i]]);
+		if(foundRomanPointer != NULL) {
+			symbolWasFound = true;
+			if(shiftingRomanPointer == foundRomanPointer) {
+				arabic += symbolSearchOrder[i]*100;
+				shiftingRomanPointer = foundRomanPointer + romanSymbolLength[symbolSearchOrder[i]];
+			}
+		}
+	}
 
 	symbolWasFound = false;
 	for(i=1; i<=9 && !symbolWasFound; ++i) {
@@ -42,11 +55,16 @@ int romanToArabic(char *roman) {
 
 size_t arabicToRoman(int arabic, char *arabicBuffer, size_t arabicBufferLength) {
 	size_t romanLength = 0;
-	int tensDigit = arabic/10;
-	int onesDigit = arabic - tensDigit*10;
+	int hundredsDigit = arabic/100;
+	int tensDigit = (arabic - hundredsDigit*100)/10;
+	int onesDigit = arabic - tensDigit*10 - hundredsDigit*100;
 
+	if((romanSymbolLength[hundredsDigit] + romanLength) <= arabicBufferLength){
+		strncpy(arabicBuffer, hundredsRomanSymbols[hundredsDigit], arabicBufferLength);
+		romanLength += romanSymbolLength[hundredsDigit];
+	}
 	if((romanSymbolLength[tensDigit] + romanLength) <= arabicBufferLength){
-		strncpy(arabicBuffer, tensRomanSymbols[tensDigit], arabicBufferLength);
+		strcat(arabicBuffer, tensRomanSymbols[tensDigit]);
 		romanLength += romanSymbolLength[tensDigit];
 	}
 	if((romanSymbolLength[onesDigit] + romanLength) <= arabicBufferLength){
