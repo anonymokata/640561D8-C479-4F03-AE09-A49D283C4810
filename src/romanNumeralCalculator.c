@@ -2,6 +2,15 @@
 
 typedef enum { false, true } bool;
 
+#define ROW 4
+#define COL 10
+char *romanSymbols[ROW][COL] = {
+	{ "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+	{ "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+	{ "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+	{ "", "M", "MM", "MMM", "*", "*", "*", "*", "*", "*"}
+};
+
 char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
 char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
@@ -73,21 +82,13 @@ size_t arabicToRoman(int arabic, char *roman, size_t romanBufferLength) {
 	int tensDigit = (arabic - hundredsDigit*100 - thousandsDigit*1000)/10;
 	int onesDigit = arabic - tensDigit*10 - hundredsDigit*100 - thousandsDigit*1000;
 
-	if((romanSymbolLength[thousandsDigit] + romanLength) <= romanBufferLength){
-		strncpy(roman, thousandsRomanSymbols[thousandsDigit], romanBufferLength);
-		romanLength += romanSymbolLength[thousandsDigit];
-	}
-	if((romanSymbolLength[hundredsDigit] + romanLength) <= romanBufferLength){
-		strcat(roman, hundredsRomanSymbols[hundredsDigit]);
-		romanLength += romanSymbolLength[hundredsDigit];
-	}
-	if((romanSymbolLength[tensDigit] + romanLength) <= romanBufferLength){
-		strcat(roman, tensRomanSymbols[tensDigit]);
-		romanLength += romanSymbolLength[tensDigit];
-	}
-	if((romanSymbolLength[onesDigit] + romanLength) <= romanBufferLength){
-		strcat(roman, onesRomanSymbols[onesDigit]);
-		romanLength += romanSymbolLength[onesDigit];
+	int digits[4] = {onesDigit, tensDigit, hundredsDigit, thousandsDigit};
+
+	for(int place = 3; place >= 0; --place) {
+		if((romanSymbolLength[digits[place]] + romanLength) <= romanBufferLength){
+			strcat(roman, romanSymbols[place][digits[place]]);
+			romanLength += romanSymbolLength[digits[place]];
+		}
 	}
 
 	return romanLength;
