@@ -3,9 +3,10 @@
 typedef enum { false, true } bool;
 
 char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-char *tensRomanSymbols[] = { "", "X"};
+char *tensRomanSymbols[] = { "", "X", "XX"};
 int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
-int symbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
+int onesSymbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
+int tensSymbolSearchOrder[] = {0, 2, 1};
 
 int romanToArabic(char *roman) {
 	char *foundRomanPointer;
@@ -17,12 +18,12 @@ int romanToArabic(char *roman) {
 	shiftingRomanPointer = roman;
 
 	symbolWasFound = false;
-	for(i=1; i<=1 && !symbolWasFound; ++i) {
-		foundRomanPointer = strstr(shiftingRomanPointer, tensRomanSymbols[i]);
+	for(i=1; i<=2 && !symbolWasFound; ++i) {
+		foundRomanPointer = strstr(shiftingRomanPointer, tensRomanSymbols[tensSymbolSearchOrder[i]]);
 		if(foundRomanPointer != NULL) {
 			symbolWasFound = true;
 			if(shiftingRomanPointer == foundRomanPointer) {
-				arabic += i*10;
+				arabic += tensSymbolSearchOrder[i]*10;
 				shiftingRomanPointer = foundRomanPointer + 1;
 			}
 		}
@@ -30,10 +31,10 @@ int romanToArabic(char *roman) {
 
 	symbolWasFound = false;
 	for(i=1; i<=9 && !symbolWasFound; ++i) {
-		foundRomanPointer = strstr(shiftingRomanPointer, onesRomanSymbols[symbolSearchOrder[i]]);
+		foundRomanPointer = strstr(shiftingRomanPointer, onesRomanSymbols[onesSymbolSearchOrder[i]]);
 		if(foundRomanPointer != NULL) {
 			symbolWasFound = true;
-			arabic += symbolSearchOrder[i];
+			arabic += onesSymbolSearchOrder[i];
 		}
 	}
 
