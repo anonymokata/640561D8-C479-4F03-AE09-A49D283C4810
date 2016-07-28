@@ -4,7 +4,7 @@ typedef enum { false, true } bool;
 
 char *onesRomanSymbols[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 char *tensRomanSymbols[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "*", "*", "*", "*", "*", "*"};
+char *hundredsRomanSymbols[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "*"};
 int romanSymbolLength[] = {0, 1, 2, 3, 2, 1, 2, 3, 4, 2};
 int symbolSearchOrder[] = {0, 9, 8, 7, 6, 4, 5, 3, 2, 1};
 
